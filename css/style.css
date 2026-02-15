@@ -681,6 +681,7 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 12px;
+  margin-bottom: 48px;
 }
 
 .topic-card {
@@ -689,37 +690,178 @@ img {
   border: 1px solid var(--border);
   border-radius: 12px;
   transition: all var(--transition);
+  cursor: pointer;
+  position: relative;
 }
 
 .topic-card:hover {
-  border-color: var(--border-hover);
+  border-color: var(--accent);
   background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.topic-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .topic-name {
   font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
-.topic-detail {
-  font-size: 0.8rem;
+.topic-arrow {
+  font-size: 0.75rem;
   color: var(--text-muted);
+  transition: all var(--transition);
 }
 
-.topic-bar {
-  height: 3px;
-  background: var(--border);
+.topic-card:hover .topic-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.topic-evidence {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.topic-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.topic-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Section sub-headers */
+.section-sub {
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+}
+
+/* --- Conference Logo Strip --- */
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 999px;
-  margin-top: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.logo-pill:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+/* --- YouTube Stats Row --- */
+.yt-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.yt-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  text-decoration: none;
+  flex: 1;
+  min-width: 200px;
+}
+
+.yt-stat-chip:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.yt-stat-icon {
+  color: #ff0000;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.yt-stat-title {
+  font-weight: 500;
+  flex: 1;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.topic-bar-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 999px;
-  transition: width 1s ease;
+.yt-stat-views {
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.yt-total-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  width: 100%;
+}
+
+.yt-total-banner strong {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 1rem;
 }
 
 /* --- Videos --- */
@@ -959,6 +1101,14 @@ img {
   .experience-header {
     flex-direction: column;
     gap: 4px;
+  }
+
+  .yt-stat-chip {
+    min-width: 100%;
+  }
+
+  .logo-strip {
+    justify-content: center;
   }
 }
 

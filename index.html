@@ -150,37 +150,38 @@
         <span class="section-label">// Expertise</span>
         <h2 class="section-title">Speaking Topics</h2>
       </div>
-      <div class="topics-grid fade-in">
-        <div class="topic-card">
-          <div class="topic-name">OpenTelemetry</div>
-          <div class="topic-detail">10+ talks &bull; Expert</div>
-          <div class="topic-bar"><div class="topic-bar-fill" style="width:95%"></div></div>
-        </div>
-        <div class="topic-card">
-          <div class="topic-name">AWS & Cloud Services</div>
-          <div class="topic-detail">6+ talks &bull; Expert</div>
-          <div class="topic-bar"><div class="topic-bar-fill" style="width:85%"></div></div>
-        </div>
-        <div class="topic-card">
-          <div class="topic-name">Kubernetes & Cloud-Native</div>
-          <div class="topic-detail">5+ talks &bull; Expert</div>
-          <div class="topic-bar"><div class="topic-bar-fill" style="width:80%"></div></div>
-        </div>
-        <div class="topic-card">
-          <div class="topic-name">Full-Stack Observability</div>
-          <div class="topic-detail">4+ talks &bull; Expert</div>
-          <div class="topic-bar"><div class="topic-bar-fill" style="width:75%"></div></div>
-        </div>
-        <div class="topic-card">
-          <div class="topic-name">AI / LLM Monitoring</div>
-          <div class="topic-detail">3+ talks &bull; Advanced</div>
-          <div class="topic-bar"><div class="topic-bar-fill" style="width:60%"></div></div>
-        </div>
-        <div class="topic-card">
-          <div class="topic-name">SecurityOps & Observability</div>
-          <div class="topic-detail">2+ talks &bull; Intermediate</div>
-          <div class="topic-bar"><div class="topic-bar-fill" style="width:45%"></div></div>
-        </div>
+
+      <!-- Evidence Cards (rendered by JS from talks.json) -->
+      <div class="topics-grid fade-in" id="topics-grid">
+        <p style="color:var(--text-muted);text-align:center;padding:40px 0;grid-column:1/-1;">Loading topics&hellip;</p>
+      </div>
+
+      <!-- Conference Logo Strip -->
+      <div class="section-sub fade-in">
+        <h3 class="section-subtitle">Spoken At</h3>
+      </div>
+      <div class="logo-strip fade-in" id="logo-strip">
+        <div class="logo-pill">KubeCon + CloudNativeCon</div>
+        <div class="logo-pill">AWS Summit</div>
+        <div class="logo-pill">KubeDay India (CNCF)</div>
+        <div class="logo-pill">API Days</div>
+        <div class="logo-pill">JSConf India</div>
+        <div class="logo-pill">Serverless Days</div>
+        <div class="logo-pill">Open Source India</div>
+        <div class="logo-pill">TechXConf</div>
+        <div class="logo-pill">Conf42</div>
+        <div class="logo-pill">Global Azure</div>
+        <div class="logo-pill">Mautic Conference</div>
+        <div class="logo-pill">Experts Live India</div>
+        <div class="logo-pill">aMP KL</div>
+      </div>
+
+      <!-- YouTube View Counts -->
+      <div class="section-sub fade-in">
+        <h3 class="section-subtitle">Recorded Talks</h3>
+      </div>
+      <div class="yt-stats-row fade-in" id="yt-stats-row">
+        <p style="color:var(--text-muted);text-align:center;padding:20px 0;width:100%;">Loading view counts&hellip;</p>
       </div>
     </div>
   </section>

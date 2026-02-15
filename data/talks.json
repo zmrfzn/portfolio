@@ -7,6 +7,7 @@
     "year": 2026,
     "location": "Online",
     "tags": ["panel", "online"],
+    "topics": ["observability"],
     "links": {
       "event": "https://newrelic.com/events"
     }
@@ -19,6 +20,7 @@
     "year": 2025,
     "location": "Kuala Lumpur, Malaysia",
     "tags": ["workshop", "international"],
+    "topics": ["ai-llm", "observability"],
     "links": {
       "event": "https://ampkl.com/ai-monitoring-masterclass",
       "announcement": "https://www.linkedin.com/posts/zmrfzn_ai-aimonitoring-ai-activity-7386997377653542912-6FFH"
@@ -32,6 +34,7 @@
     "year": 2025,
     "location": "Kuala Lumpur, Malaysia",
     "tags": ["keynote", "international"],
+    "topics": ["aws", "ai-llm", "observability"],
     "links": {
       "event": "https://www.meetup.com/awsugmy/events/311672792/"
     }
@@ -44,6 +47,7 @@
     "year": 2025,
     "location": "Bengaluru",
     "tags": ["talk"],
+    "topics": ["opentelemetry"],
     "links": {
       "video": "https://www.youtube.com/watch?v=gZtnKmbtecY",
       "event": "https://www.apidays.global/archive/2025/india"
@@ -57,6 +61,7 @@
     "year": 2025,
     "location": "Bengaluru",
     "tags": ["workshop"],
+    "topics": ["ai-llm", "observability"],
     "links": {
       "event": "https://www.apidays.global/archive/2025/india"
     }
@@ -69,6 +74,7 @@
     "year": 2025,
     "location": "Pune",
     "tags": ["talk"],
+    "topics": ["aws", "security", "observability"],
     "links": {
       "slides": "https://github.com/wheresNasha/EVENTS/blob/main/AWS%20COmmunity%20Day%20Pune%202025/Sakshi-Zam-SECOPS-ACD%20Pune%202025.pptx.pdf",
       "event": "https://konfhub.com/acdpune2025"
@@ -82,6 +88,7 @@
     "year": 2025,
     "location": "Singapore",
     "tags": ["talk", "international"],
+    "topics": ["aws", "observability"],
     "links": {
       "event": "https://www.awsugsg.dev"
     }
@@ -94,6 +101,7 @@
     "year": 2025,
     "location": "Hyderabad",
     "tags": ["keynote"],
+    "topics": ["opentelemetry", "aws", "observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=H4V107K-xTU"
     }
@@ -106,6 +114,7 @@
     "year": 2025,
     "location": "Bangalore",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "aws", "observability"],
     "links": {
       "event": "https://luma.com/enonwg30"
     }
@@ -118,6 +127,7 @@
     "year": 2025,
     "location": "Bengaluru",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "aws", "kubernetes", "observability"],
     "links": {
       "event": "https://acd.awsugblr.in"
     }
@@ -130,6 +140,7 @@
     "year": 2025,
     "location": "Hyderabad",
     "tags": ["talk"],
+    "topics": ["observability"],
     "links": {
       "event": "https://konfhub.com/experts-live-india-2025"
     }
@@ -142,6 +153,7 @@
     "year": 2025,
     "location": "Mumbai",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "aws", "observability"],
     "links": {
       "event": "https://luma.com/jpkqrh2x"
     }
@@ -154,6 +166,7 @@
     "year": 2024,
     "location": "Delhi",
     "tags": ["talk"],
+    "topics": ["kubernetes", "observability"],
     "links": {}
   },
   {
@@ -164,6 +177,7 @@
     "year": 2024,
     "location": "Chennai",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "observability"],
     "links": {
       "event": "https://2024.techxconf.com/"
     }
@@ -176,6 +190,7 @@
     "year": 2024,
     "location": "Kuala Lumpur, Malaysia",
     "tags": ["talk", "international"],
+    "topics": ["opentelemetry", "aws"],
     "links": {
       "event": "https://awsug.my",
       "announcement": "https://www.linkedin.com/posts/zmrfzn_awscommunityday-malaysia-observability-activity-7265363330276458496-hw3o"
@@ -189,6 +204,7 @@
     "year": 2024,
     "location": "Online",
     "tags": ["online"],
+    "topics": ["observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=NkJefYSVxfE"
     }
@@ -201,6 +217,7 @@
     "year": 2024,
     "location": "Gurugram",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "ai-llm"],
     "links": {
       "video": "https://www.youtube.com/watch?v=a501tgQzc6Y",
       "slides": "https://github.com/cncgnd/presentations-slides/"
@@ -214,6 +231,7 @@
     "year": 2024,
     "location": "Bangalore",
     "tags": ["talk"],
+    "topics": ["aws", "observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=figFMgvOhdk",
       "event": "https://www.serverlessdays.io/bengaluru/r"
@@ -227,6 +245,7 @@
     "year": 2024,
     "location": "Pune",
     "tags": ["talk"],
+    "topics": ["aws", "observability"],
     "links": {
       "event": "https://konfhub.com/acdpune2024"
     }
@@ -239,6 +258,7 @@
     "year": 2024,
     "location": "Online",
     "tags": ["online"],
+    "topics": ["opentelemetry", "observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=awTp7rF_1PE",
       "slides": "https://conf42.github.io/static/slides/Zameer%20Fouzan%20-%20Conf42%20Observability%202024.pdf"
@@ -252,6 +272,7 @@
     "year": 2024,
     "location": "Bengaluru",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "observability"],
     "links": {
       "event": "https://globalazure.net/communities/2024/AzureBengaluru",
       "announcement": "https://www.linkedin.com/posts/zmrfzn_azure-microsoft-globalazure-activity-7183392107267559424-wOMO"
@@ -265,6 +286,7 @@
     "year": 2024,
     "location": "Bengaluru",
     "tags": ["talk"],
+    "topics": ["aws", "observability"],
     "links": {
       "event": "https://www.awsugblr.in/blog/2024-03-21-awscommunityday-blr-speaker-zameer_fouzan_announcement"
     }
@@ -277,6 +299,7 @@
     "year": 2024,
     "location": "Pune",
     "tags": ["talk"],
+    "topics": ["observability"],
     "links": {
       "event": "https://mauticon.mautic.org/"
     }
@@ -289,6 +312,7 @@
     "year": 2024,
     "location": "Bangalore",
     "tags": ["workshop"],
+    "topics": ["ai-llm", "observability"],
     "links": {}
   },
   {
@@ -299,6 +323,7 @@
     "year": 2023,
     "location": "India",
     "tags": ["keynote"],
+    "topics": ["kubernetes", "observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=fLptS-w0Tyk"
     }
@@ -311,6 +336,7 @@
     "year": 2023,
     "location": "Gurugram",
     "tags": ["talk"],
+    "topics": ["observability"],
     "links": {
       "event": "https://newrelic.com/events/2023-12-13/nrug-gurugram"
     }
@@ -323,6 +349,7 @@
     "year": 2023,
     "location": "Mumbai",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "kubernetes"],
     "links": {}
   },
   {
@@ -333,6 +360,7 @@
     "year": 2023,
     "location": "Hyderabad",
     "tags": ["talk"],
+    "topics": ["opentelemetry"],
     "links": {}
   },
   {
@@ -343,6 +371,7 @@
     "year": 2023,
     "location": "Bengaluru",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "observability"],
     "links": {
       "event": "https://www.opensourceindia.in/osi-speakers-2023/zameer-fouzan/"
     }
@@ -355,6 +384,7 @@
     "year": 2023,
     "location": "Delhi & Bangalore",
     "tags": ["talk"],
+    "topics": ["observability"],
     "links": {
       "announcement": "https://www.linkedin.com/posts/zmrfzn_futurestacks-apac-activity-7110842500973510656-wj8P"
     }
@@ -367,6 +397,7 @@
     "year": 2023,
     "location": "India",
     "tags": ["talk"],
+    "topics": ["opentelemetry", "observability"],
     "links": {}
   },
   {
@@ -377,6 +408,7 @@
     "year": 2023,
     "location": "Bengaluru",
     "tags": ["talk"],
+    "topics": ["kubernetes", "observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=78C7gujwGO8"
     }
@@ -389,6 +421,7 @@
     "year": 2023,
     "location": "Bangalore",
     "tags": ["talk"],
+    "topics": ["observability"],
     "links": {}
   }
 ]
