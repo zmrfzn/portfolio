@@ -1,0 +1,394 @@
+[
+  {
+    "id": "expert-series-2026",
+    "title": "Observability Expert Series — Fynd, Myntra, Acko",
+    "event": "New Relic Expert Series",
+    "date": "Jan 2026",
+    "year": 2026,
+    "location": "Online",
+    "tags": ["panel", "online"],
+    "links": {
+      "event": "https://newrelic.com/events"
+    }
+  },
+  {
+    "id": "amp-kl-2025",
+    "title": "AI Monitoring Masterclass",
+    "event": "aMP KL 2025",
+    "date": "Oct 2025",
+    "year": 2025,
+    "location": "Kuala Lumpur, Malaysia",
+    "tags": ["workshop", "international"],
+    "links": {
+      "event": "https://ampkl.com/ai-monitoring-masterclass",
+      "announcement": "https://www.linkedin.com/posts/zmrfzn_ai-aimonitoring-ai-activity-7386997377653542912-6FFH"
+    }
+  },
+  {
+    "id": "aws-malaysia-meetup-2025",
+    "title": "Beyond the Black Box — Observability into AI Applications with Amazon Bedrock",
+    "event": "AWS User Group Malaysia Meetup",
+    "date": "Oct 2025",
+    "year": 2025,
+    "location": "Kuala Lumpur, Malaysia",
+    "tags": ["keynote", "international"],
+    "links": {
+      "event": "https://www.meetup.com/awsugmy/events/311672792/"
+    }
+  },
+  {
+    "id": "apidays-india-2025-talk",
+    "title": "Simplifying Instrumentation in Complex Systems with OpenTelemetry",
+    "event": "API Days India 2025",
+    "date": "Oct 2025",
+    "year": 2025,
+    "location": "Bengaluru",
+    "tags": ["talk"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=gZtnKmbtecY",
+      "event": "https://www.apidays.global/archive/2025/india"
+    }
+  },
+  {
+    "id": "apidays-india-2025-workshop",
+    "title": "Hands-on Guide to Monitor Your API-Driven AI/LLM Applications",
+    "event": "API Days India 2025",
+    "date": "Oct 2025",
+    "year": 2025,
+    "location": "Bengaluru",
+    "tags": ["workshop"],
+    "links": {
+      "event": "https://www.apidays.global/archive/2025/india"
+    }
+  },
+  {
+    "id": "acd-pune-2025",
+    "title": "From Chaos to Clarity with AWS Security Observability",
+    "event": "AWS Community Day Pune 2025",
+    "date": "Aug 2025",
+    "year": 2025,
+    "location": "Pune",
+    "tags": ["talk"],
+    "links": {
+      "slides": "https://github.com/wheresNasha/EVENTS/blob/main/AWS%20COmmunity%20Day%20Pune%202025/Sakshi-Zam-SECOPS-ACD%20Pune%202025.pptx.pdf",
+      "event": "https://konfhub.com/acdpune2025"
+    }
+  },
+  {
+    "id": "acd-singapore-2025",
+    "title": "Observability for AWS Applications",
+    "event": "AWS Community Day Singapore 2025",
+    "date": "Aug 2025",
+    "year": 2025,
+    "location": "Singapore",
+    "tags": ["talk", "international"],
+    "links": {
+      "event": "https://www.awsugsg.dev"
+    }
+  },
+  {
+    "id": "cn-hyderabad-2025",
+    "title": "Amazon Distro for OpenTelemetry for Serverless Observability",
+    "event": "Cloud Native Hyderabad",
+    "date": "Jun 2025",
+    "year": 2025,
+    "location": "Hyderabad",
+    "tags": ["keynote"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=H4V107K-xTU"
+    }
+  },
+  {
+    "id": "obs-marathon-blr-2025",
+    "title": "AWS Distro for OpenTelemetry — The Open-Source Way to Observability",
+    "event": "Observability Marathon Bangalore",
+    "date": "Jun 2025",
+    "year": 2025,
+    "location": "Bangalore",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://luma.com/enonwg30"
+    }
+  },
+  {
+    "id": "aws-summit-blr-2025",
+    "title": "Observability on EKS with OpenTelemetry",
+    "event": "AWS Summit Bengaluru 2025",
+    "date": "May 2025",
+    "year": 2025,
+    "location": "Bengaluru",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://acd.awsugblr.in"
+    }
+  },
+  {
+    "id": "experts-live-2025",
+    "title": "Experts Live India 2025",
+    "event": "Experts Live India",
+    "date": "Feb 2025",
+    "year": 2025,
+    "location": "Hyderabad",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://konfhub.com/experts-live-india-2025"
+    }
+  },
+  {
+    "id": "obs-marathon-mumbai-2025",
+    "title": "Open Source Observability Solutions in AWS with OpenTelemetry",
+    "event": "Observability Marathon Mumbai",
+    "date": "Jan 2025",
+    "year": 2025,
+    "location": "Mumbai",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://luma.com/jpkqrh2x"
+    }
+  },
+  {
+    "id": "kubecon-delhi-2024",
+    "title": "KubeCon + CloudNativeCon India 2024",
+    "event": "KubeCon + CloudNativeCon Delhi",
+    "date": "Dec 2024",
+    "year": 2024,
+    "location": "Delhi",
+    "tags": ["talk"],
+    "links": {}
+  },
+  {
+    "id": "techxconf-2024",
+    "title": "Is OpenTelemetry the Future of Observability?",
+    "event": "TechXConf 2024",
+    "date": "Nov 2024",
+    "year": 2024,
+    "location": "Chennai",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://2024.techxconf.com/"
+    }
+  },
+  {
+    "id": "acd-malaysia-2024",
+    "title": "Getting Started with Amazon Distro for OpenTelemetry (ADOT)",
+    "event": "AWS Community Day Malaysia 2024",
+    "date": "Nov 2024",
+    "year": 2024,
+    "location": "Kuala Lumpur, Malaysia",
+    "tags": ["talk", "international"],
+    "links": {
+      "event": "https://awsug.my",
+      "announcement": "https://www.linkedin.com/posts/zmrfzn_awscommunityday-malaysia-observability-activity-7265363330276458496-hw3o"
+    }
+  },
+  {
+    "id": "saas-insider-2024",
+    "title": "Introduction to Full-Stack Observability with New Relic",
+    "event": "SaaS Insider",
+    "date": "Aug 2024",
+    "year": 2024,
+    "location": "Online",
+    "tags": ["online"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=NkJefYSVxfE"
+    }
+  },
+  {
+    "id": "cncf-delhi-2024",
+    "title": "Open Telemetry Open Telemetry OpenLLmetry?",
+    "event": "CNCF New Delhi — Observability Marathon",
+    "date": "Aug 2024",
+    "year": 2024,
+    "location": "Gurugram",
+    "tags": ["talk"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=a501tgQzc6Y",
+      "slides": "https://github.com/cncgnd/presentations-slides/"
+    }
+  },
+  {
+    "id": "serverlessdays-blr-2024",
+    "title": "Explore the Serverless Instrumentation: Under the Microscope",
+    "event": "Serverless Days Bangalore 2024",
+    "date": "Aug 2024",
+    "year": 2024,
+    "location": "Bangalore",
+    "tags": ["talk"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=figFMgvOhdk",
+      "event": "https://www.serverlessdays.io/bengaluru/r"
+    }
+  },
+  {
+    "id": "acd-pune-2024",
+    "title": "AWS Community Day Pune 2024",
+    "event": "AWS Community Day Pune 2024",
+    "date": "Aug 2024",
+    "year": 2024,
+    "location": "Pune",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://konfhub.com/acdpune2024"
+    }
+  },
+  {
+    "id": "conf42-2024",
+    "title": "OpenTelemetry 101: A Beginner's Guide to Tracing, Metrics, and Logs",
+    "event": "Conf42 Observability 2024",
+    "date": "Jun 2024",
+    "year": 2024,
+    "location": "Online",
+    "tags": ["online"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=awTp7rF_1PE",
+      "slides": "https://conf42.github.io/static/slides/Zameer%20Fouzan%20-%20Conf42%20Observability%202024.pdf"
+    }
+  },
+  {
+    "id": "global-azure-blr-2024",
+    "title": "Azure OpenTelemetry Integration",
+    "event": "Global Azure 2024 — Bengaluru Edition",
+    "date": "Apr 2024",
+    "year": 2024,
+    "location": "Bengaluru",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://globalazure.net/communities/2024/AzureBengaluru",
+      "announcement": "https://www.linkedin.com/posts/zmrfzn_azure-microsoft-globalazure-activity-7183392107267559424-wOMO"
+    }
+  },
+  {
+    "id": "acd-blr-2024",
+    "title": "How New Relic Unlocked Scalability with Cell-based Architecture on AWS",
+    "event": "AWS Community Day Bengaluru 2024",
+    "date": "Mar 2024",
+    "year": 2024,
+    "location": "Bengaluru",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://www.awsugblr.in/blog/2024-03-21-awscommunityday-blr-speaker-zameer_fouzan_announcement"
+    }
+  },
+  {
+    "id": "mautic-2024",
+    "title": "Keeping High Performing Systems Performant — Modern Observability for Symfony",
+    "event": "Mautic Conference India 2024",
+    "date": "Feb 2024",
+    "year": 2024,
+    "location": "Pune",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://mauticon.mautic.org/"
+    }
+  },
+  {
+    "id": "o11ydays-blr-2024",
+    "title": "New Relic Alerts & AI — Game Day Workshop",
+    "event": "O11y Days Bangalore",
+    "date": "Feb 2024",
+    "year": 2024,
+    "location": "Bangalore",
+    "tags": ["workshop"],
+    "links": {}
+  },
+  {
+    "id": "kubeday-india-2023",
+    "title": "Instant, Auto-telemetry for K8s Observability with Pixie",
+    "event": "KubeDay India 2023 (CNCF)",
+    "date": "Dec 2023",
+    "year": 2023,
+    "location": "India",
+    "tags": ["keynote"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=fLptS-w0Tyk"
+    }
+  },
+  {
+    "id": "nrug-gurugram-2023",
+    "title": "NRUG Gurugram — Year-End Celebration",
+    "event": "New Relic User Group Gurugram",
+    "date": "Dec 2023",
+    "year": 2023,
+    "location": "Gurugram",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://newrelic.com/events/2023-12-13/nrug-gurugram"
+    }
+  },
+  {
+    "id": "kcd-mumbai-2023",
+    "title": "Top 5 Things to Know Running OpenTelemetry on Kubernetes",
+    "event": "KCD Mumbai",
+    "date": "2023",
+    "year": 2023,
+    "location": "Mumbai",
+    "tags": ["talk"],
+    "links": {}
+  },
+  {
+    "id": "cncf-hyderabad-2023",
+    "title": "OpenTelemetry 101",
+    "event": "CNCF Hyderabad Meetup",
+    "date": "Nov 2023",
+    "year": 2023,
+    "location": "Hyderabad",
+    "tags": ["talk"],
+    "links": {}
+  },
+  {
+    "id": "osi-2023",
+    "title": "Is OpenTelemetry the Future of Observability?",
+    "event": "Open Source India 2023",
+    "date": "Oct 2023",
+    "year": 2023,
+    "location": "Bengaluru",
+    "tags": ["talk"],
+    "links": {
+      "event": "https://www.opensourceindia.in/osi-speakers-2023/zameer-fouzan/"
+    }
+  },
+  {
+    "id": "futurestack-2023",
+    "title": "FutureStack India 2023",
+    "event": "New Relic FutureStack",
+    "date": "Sep 2023",
+    "year": 2023,
+    "location": "Delhi & Bangalore",
+    "tags": ["talk"],
+    "links": {
+      "announcement": "https://www.linkedin.com/posts/zmrfzn_futurestacks-apac-activity-7110842500973510656-wj8P"
+    }
+  },
+  {
+    "id": "jsconf-2023",
+    "title": "Instrumenting JavaScript with OpenTelemetry and New Relic",
+    "event": "JSConf India 2023",
+    "date": "2023",
+    "year": 2023,
+    "location": "India",
+    "tags": ["talk"],
+    "links": {}
+  },
+  {
+    "id": "kcd-blr-2023",
+    "title": "Observability 101 for Kubernetes",
+    "event": "KCD Bengaluru",
+    "date": "Jul 2023",
+    "year": 2023,
+    "location": "Bengaluru",
+    "tags": ["talk"],
+    "links": {
+      "video": "https://www.youtube.com/watch?v=78C7gujwGO8"
+    }
+  },
+  {
+    "id": "o11ydays-blr-2023",
+    "title": "O11ydays Bangalore 2023",
+    "event": "O11ydays Bangalore",
+    "date": "Feb 2023",
+    "year": 2023,
+    "location": "Bangalore",
+    "tags": ["talk"],
+    "links": {}
+  }
+]
