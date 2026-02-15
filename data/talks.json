@@ -33,7 +33,7 @@
     "date": "Oct 2025",
     "year": 2025,
     "location": "Kuala Lumpur, Malaysia",
-    "tags": ["keynote", "international"],
+    "tags": ["talk", "international"],
     "topics": ["aws", "ai-llm", "observability"],
     "links": {
       "event": "https://www.meetup.com/awsugmy/events/311672792/"
@@ -91,6 +91,19 @@
     "topics": ["aws", "observability"],
     "links": {
       "event": "https://www.awsugsg.dev"
+    }
+  },
+  {
+    "id": "acd-blr-2025",
+    "title": "Mastering Problem Solving in Engineering with Observability",
+    "event": "AWS Community Day Bengaluru 2025",
+    "date": "Jul 2025",
+    "year": 2025,
+    "location": "Bengaluru",
+    "tags": ["keynote"],
+    "topics": ["aws", "observability"],
+    "links": {
+      "event": "https://acd.awsugblr.in/acd-blr-2025.html"
     }
   },
   {
@@ -202,8 +215,8 @@
     "event": "SaaS Insider",
     "date": "Aug 2024",
     "year": 2024,
-    "location": "Online",
-    "tags": ["online"],
+    "location": "Bengaluru",
+    "tags": ["talk"],
     "topics": ["observability"],
     "links": {
       "video": "https://www.youtube.com/watch?v=NkJefYSVxfE"

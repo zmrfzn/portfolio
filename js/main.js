@@ -101,15 +101,50 @@
   // Desired display order for topics
   var TOPIC_ORDER = ['opentelemetry', 'aws', 'kubernetes', 'observability', 'ai-llm', 'security'];
 
-  // Link icon map
-  function linkIcon(type) {
+  // Link icon map — uses SVG icons from assets/icons/
+  function linkIcon(type, url) {
+    var icon = '';
+    var label = '';
+
     switch (type) {
-      case 'video': return '&#9654; Video';
-      case 'slides': return 'Slides &#8599;';
-      case 'event': return 'Event &#8599;';
-      case 'announcement': return 'Post &#8599;';
-      default: return type + ' &#8599;';
+      case 'video':
+        icon = '<img src="assets/icons/youtube.svg" alt="" class="link-icon">';
+        label = 'Video';
+        break;
+      case 'slides':
+        icon = '<img src="assets/icons/slides.svg" alt="" class="link-icon">';
+        label = 'Slides';
+        break;
+      case 'announcement':
+        // Detect LinkedIn URLs
+        if (url && url.indexOf('linkedin.com') !== -1) {
+          icon = '<img src="assets/icons/linkedin.svg" alt="" class="link-icon">';
+          label = 'LinkedIn';
+        } else {
+          icon = '<img src="assets/icons/globe.svg" alt="" class="link-icon">';
+          label = 'Post';
+        }
+        break;
+      case 'event':
+        // Detect specific platforms
+        if (url && url.indexOf('linkedin.com') !== -1) {
+          icon = '<img src="assets/icons/linkedin.svg" alt="" class="link-icon">';
+          label = 'LinkedIn';
+        } else if (url && url.indexOf('youtube.com') !== -1) {
+          icon = '<img src="assets/icons/youtube.svg" alt="" class="link-icon">';
+          label = 'Video';
+        } else {
+          icon = '<img src="assets/icons/globe.svg" alt="" class="link-icon">';
+          label = 'Event';
+        }
+        break;
+      default:
+        icon = '<img src="assets/icons/globe.svg" alt="" class="link-icon">';
+        label = type;
+        break;
     }
+
+    return icon + ' ' + label;
   }
 
   function renderTalkCard(talk) {
@@ -124,7 +159,7 @@
       if (linkEntries.length > 0) {
         linksHtml = '<div class="talk-links">' +
           linkEntries.map(function (key) {
-            return '<a href="' + talk.links[key] + '" target="_blank" rel="noopener" class="talk-link">' + linkIcon(key) + '</a>';
+            return '<a href="' + talk.links[key] + '" target="_blank" rel="noopener" class="talk-link">' + linkIcon(key, talk.links[key]) + '</a>';
           }).join('') +
           '</div>';
       }
