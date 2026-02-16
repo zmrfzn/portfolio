@@ -1,0 +1,280 @@
+---
+/**
+ * index.astro — Main portfolio page
+ * Minimal Debug Version
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import About from '../components/About.astro';
+import TalkCard from '../components/TalkCard.astro';
+import TopicCard from '../components/TopicCard.astro';
+import VideoCard from '../components/VideoCard.astro';
+import Footer from '../components/Footer.astro';
+
+import talksData from '../data/talks.json';
+import videosData from '../data/videos.json';
+
+// --- Build-time computations (Keep all logic to test if frontmatter is the issue) ---
+
+// Tag config
+const TAG_CONFIG: Record<string, { label: string }> = {
+  keynote: { label: 'Keynote' },
+  international: { label: 'International' },
+  workshop: { label: 'Workshop' },
+  talk: { label: 'Talk' },
+  online: { label: 'Online' },
+  panel: { label: 'Panel' }
+};
+
+// Topic config
+const TOPIC_CONFIG: Record<string, { label: string }> = {
+  opentelemetry: { label: 'OpenTelemetry' },
+  aws: { label: 'AWS & Cloud Services' },
+  adot: { label: 'ADOT (AWS Distro for OTel)' },
+  kubernetes: { label: 'Kubernetes & Cloud-Native' },
+  observability: { label: 'Full-Stack Observability' },
+  'ai-llm': { label: 'AI / LLM Monitoring' },
+  security: { label: 'SecurityOps & Observability' }
+};
+const TOPIC_ORDER = ['opentelemetry', 'aws', 'adot', 'kubernetes', 'observability', 'ai-llm', 'security'];
+
+// Group talks by year
+type Talk = typeof talksData[number];
+const talksByYear: Record<number, Talk[]> = {};
+talksData.forEach((talk) => {
+  if (!talksByYear[talk.year]) talksByYear[talk.year] = [];
+  talksByYear[talk.year].push(talk);
+});
+const sortedYears = Object.keys(talksByYear).map(Number).sort((a, b) => b - a);
+
+// Compute tag counts
+const tagCounts: Record<string, number> = {};
+talksData.forEach((talk) => {
+  talk.tags.forEach((t) => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
+});
+const filterOrder = ['all', 'keynote', 'international', 'workshop', 'talk', 'online', 'panel'];
+
+// Compute topic stats
+interface TopicStat {
+  count: number; keynotes: number; international: number; workshops: number;
+  minYear: number; conferences: Set<string>;
+}
+const topicStats: Record<string, TopicStat> = {};
+TOPIC_ORDER.forEach(t => {
+  topicStats[t] = { count: 0, keynotes: 0, international: 0, workshops: 0, minYear: 9999, conferences: new Set() };
+});
+talksData.forEach((talk) => {
+  (talk.topics || []).forEach((topic) => {
+    if (!topicStats[topic]) return;
+    topicStats[topic].count++;
+    if (talk.tags.includes('keynote')) topicStats[topic].keynotes++;
+    if (talk.tags.includes('international')) topicStats[topic].international++;
+    if (talk.tags.includes('workshop')) topicStats[topic].workshops++;
+    if (talk.year < topicStats[topic].minYear) topicStats[topic].minYear = talk.year;
+    topicStats[topic].conferences.add(talk.event);
+  });
+});
+
+// Compute stats
+const uniqueCountries = new Set<string>();
+talksData.forEach(t => {
+  const loc = t.location;
+  if (loc.includes('Malaysia') || loc.includes('Kuala Lumpur')) uniqueCountries.add('Malaysia');
+  else if (loc.includes('Singapore')) uniqueCountries.add('Singapore');
+  else if (loc.includes('Online')) { /* skip */ }
+  else uniqueCountries.add('India');
+});
+
+// Conference logo pills
+const conferencePills = [
+  'KubeCon + CloudNativeCon', 'AWS Summit', 'KubeDay India (CNCF)', 'API Days',
+  'JSConf India', 'Serverless Days', 'Open Source India', 'TechXConf',
+  'Conf42', 'Global Azure', 'Mautic Conference', 'Experts Live India', 'aMP KL'
+];
+
+// YT video IDs from talks
+interface VideoInfo {
+  id: string;
+  title: string;
+  event: string;
+  url: string;
+}
+
+const ytVideoIds: VideoInfo[] = talksData
+  .filter(t => t.links?.video)
+  .map(t => {
+    const match = t.links!.video!.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    return match ? { id: match[1], title: t.title, event: t.event, url: t.links!.video! } : null;
+  })
+  .filter((v): v is VideoInfo => v !== null);
+---
+
+<BaseLayout
+  title="Zameer Fouzan | Lead Developer Relations Engineer"
+  description="Lead Developer Relations Engineer specialising in observability, OpenTelemetry, and cloud-native systems. 30+ speaking engagements across 4 countries."
+>
+  <Nav />
+  <Hero />
+
+  <Stats talkCount={talksData.length} countries={uniqueCountries.size} />
+
+  <div class="container"><hr class="section-divider" /></div>
+
+  <About />
+
+  <div class="container"><hr class="section-divider" /></div>
+
+  <!-- SPEAKING -->
+  <section class="section" id="speaking">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">// Speaking</span>
+        <h2 class="section-title">Conference Talks & Workshops</h2>
+      </div>
+
+      <!-- Filter Buttons (pre-rendered with counts) -->
+      <div class="speaking-filters fade-in" id="speaking-filters">
+        <button class="filter-btn active" data-filter="all">All ({talksData.length})</button>
+        {filterOrder.slice(1).map(tag => (
+          tagCounts[tag] ? (
+            <button class="filter-btn" data-filter={tag}>
+              {TAG_CONFIG[tag]?.label || tag} ({tagCounts[tag]})
+            </button>
+          ) : null
+        ))}
+      </div>
+
+      <!-- Topic Filter Indicator (hidden by default, shown by JS) -->
+      <div id="topic-filter-indicator" class="topic-filter-indicator" style="display:none;">
+        Showing: <strong id="topic-filter-label"></strong>
+        <button class="topic-clear-btn" id="topic-clear-btn" title="Clear topic filter">&times;</button>
+      </div>
+
+      <!-- Year Groups (all pre-rendered) -->
+      <div id="speaking-content">
+        {sortedYears.map((year, idx) => {
+          const talks = talksByYear[year];
+          const isOpen = idx < 2;
+          return (
+            <div class={"year-group" + (isOpen ? " open" : "")} data-year={year}>
+              <button class="year-toggle" aria-expanded={isOpen ? 'true' : 'false'}>
+                <span class="year-label">{year}</span>
+                <span class="year-count" data-total={talks.length}>{talks.length + ' talk' + (talks.length > 1 ? 's' : '')}</span>
+                <span class="year-chevron">{isOpen ? '\u25B2' : '\u25BC'}</span>
+              </button>
+              <div class="year-content" style={isOpen ? '' : 'display:none'}>
+                {talks.map(talk => <TalkCard talk={talk} />)}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider" /></div>
+
+  <!-- EXPERTISE -->
+  <section class="section" id="topics">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">// Expertise</span>
+        <h2 class="section-title">Speaking Topics</h2>
+      </div>
+
+      <div class="topics-grid fade-in" id="topics-grid">
+        {TOPIC_ORDER.map(topic => {
+          const s = topicStats[topic];
+          if (s.count === 0) return null;
+          return (
+            <TopicCard
+              topic={topic}
+              label={TOPIC_CONFIG[topic]?.label || topic}
+              count={s.count}
+              events={s.conferences.size}
+              keynotes={s.keynotes}
+              workshops={s.workshops}
+              international={s.international}
+              since={s.minYear}
+            />
+          );
+        })}
+      </div>
+
+      <!-- Conference Logo Strip -->
+      <div class="section-sub fade-in">
+        <h3 class="section-subtitle">Spoken At</h3>
+      </div>
+      <div class="logo-strip fade-in" id="logo-strip">
+        {conferencePills.map(name => <div class="logo-pill">{name}</div>)}
+      </div>
+
+      <!-- YouTube View Counts (loaded client-side from Worker) -->
+      <div class="section-sub fade-in">
+        <h3 class="section-subtitle">Recorded Talks</h3>
+      </div>
+      <div class="yt-stats-row fade-in" id="yt-stats-row">
+        {ytVideoIds.map(v => (
+          <a href={v.url} target="_blank" rel="noopener" class="yt-stat-chip">
+            <span class="yt-stat-icon">&#9654;</span>
+            <span class="yt-stat-title">{v.title}</span>
+            <span class="yt-stat-views" data-video-id={v.id}></span>
+          </a>
+        ))}
+        <div class="yt-total-banner" id="yt-total-banner" style="display:none;">
+          <span class="yt-stat-icon">&#9654;</span>
+          <span>Total recorded talk views: <strong id="yt-total-count"></strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider" /></div>
+
+  <!-- VIDEOS -->
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">// Videos</span>
+        <h2 class="section-title">Featured Recordings</h2>
+      </div>
+      <div class="videos-grid fade-in" id="videos-grid">
+        {videosData.map((v: any) => (
+          <VideoCard id={v.id} title={v.title} event={v.event} badge={v.badge} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider" /></div>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container" style="text-align:center;">
+      <div class="section-header fade-in" style="text-align:center;">
+        <span class="section-label">// Contact</span>
+        <h2 class="section-title">Get in Touch</h2>
+      </div>
+      <p class="fade-in" style="color:var(--text-secondary);max-width:500px;margin:0 auto 32px;font-size:0.95rem;">
+        Interested in having me speak at your event, or want to collaborate on observability and cloud-native topics?
+        Let's connect.
+      </p>
+      <div class="hero-links fade-in" style="justify-content:center;">
+        <a href="https://linktr.ee/zmrfzn" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+          </svg>
+          All Links &amp; Contact
+        </a>
+        <a href="https://sessionize.com/zmrfzn/" target="_blank" rel="noopener" class="btn btn-outline">Sessionize</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <script src="../scripts/main.js"></script>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+// Nav.astro — Static nav, interactive toggle handled by page script
+---
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">ZF<span>.</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#speaking">Speaking</a></li>
+      <li><a href="#topics">Expertise</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">&#9790;</button>
+      <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </div>
+</nav>

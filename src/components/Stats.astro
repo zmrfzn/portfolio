@@ -1,0 +1,31 @@
+---
+// Stats.astro — Computed at build time from talks data
+interface Props {
+  talkCount: number;
+  countries: number;
+}
+const { talkCount, countries } = Astro.props;
+---
+
+<section class="section" id="stats">
+  <div class="container">
+    <div class="stats-grid fade-in">
+      <div class="stat-card">
+        <div class="stat-number">{talkCount}+</div>
+        <div class="stat-label">Speaking Engagements</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5K+</div>
+        <div class="stat-label">Practitioners Enabled</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{countries}</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">9+</div>
+        <div class="stat-label">Years in Tech</div>
+      </div>
+    </div>
+  </div>
+</section>

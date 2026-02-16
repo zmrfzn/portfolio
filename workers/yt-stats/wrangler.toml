@@ -1,0 +1,14 @@
+name = "yt-stats"
+main = "src/index.ts"
+compatibility_date = "2024-05-29"
+
+[triggers]
+crons = ["0 9 * * 1"] # Every Monday at 9:00 AM UTC
+
+[[kv_namespaces]]
+binding = "YT_CACHE"
+id = "YT_CACHE_ID_PLACEHOLDER" # User will need to replace this
+
+[vars]
+ALLOWED_ORIGIN = "*" # Ideally "https://zmrfzn.pages.dev", but * for dev/preview
+YT_API_KEY = "YT_API_KEY_PLACEHOLDER" # User will need to set this via secret

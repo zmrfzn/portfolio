@@ -1,0 +1,54 @@
+---
+// TopicCard.astro — Evidence card for a topic, pre-rendered at build time
+interface Props {
+  topic: string;
+  label: string;
+  count: number;
+  events: number;
+  keynotes: number;
+  workshops: number;
+  international: number;
+  since: number;
+}
+
+const { topic, label, count, events, keynotes, workshops, international, since } = Astro.props;
+
+// Pick the best third stat
+let thirdValue: string | number = '—';
+let thirdLabel = '';
+if (keynotes > 0) { thirdValue = keynotes; thirdLabel = 'Keynotes'; }
+else if (workshops > 0) { thirdValue = workshops; thirdLabel = 'Workshops'; }
+else if (international > 0) { thirdValue = international; thirdLabel = "Int'l"; }
+---
+
+<div class="topic-card" data-topic={topic} role="button" tabindex="0" title={"View " + label + " talks"}>
+  <div class="topic-card-header">
+    <div class="topic-name">{label}</div>
+    <span class="topic-arrow">&#8599;</span>
+  </div>
+  <div class="topic-evidence">
+    <div class="topic-stat">
+      <span class="topic-stat-value">{count}</span>
+      <span class="topic-stat-label">Talks</span>
+    </div>
+    <div class="topic-stat">
+      <span class="topic-stat-value">{events}</span>
+      <span class="topic-stat-label">Events</span>
+    </div>
+    {thirdLabel ? (
+      <div class="topic-stat">
+        <span class="topic-stat-value">{thirdValue}</span>
+        <span class="topic-stat-label">{thirdLabel}</span>
+      </div>
+    ) : (
+      <div class="topic-stat">
+        <span class="topic-stat-value">&mdash;</span>
+        <span class="topic-stat-label">&nbsp;</span>
+      </div>
+    )}
+    <div class="topic-stat">
+      <span class="topic-stat-value">{since}</span>
+      <span class="topic-stat-label">Since</span>
+    </div>
+  </div>
+</div>

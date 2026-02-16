@@ -1,0 +1,76 @@
+---
+// TalkCard.astro — Pre-rendered at build time
+interface Props {
+  talk: {
+    id: string;
+    title: string;
+    event: string;
+    date: string;
+    year: number;
+    location: string;
+    tags: string[];
+    topics?: string[];
+    links?: Record<string, string>;
+  };
+}
+
+const { talk } = Astro.props;
+
+const TAG_CONFIG: Record<string, { label: string; cls: string }> = {
+  keynote: { label: 'Keynote', cls: 'keynote' },
+  international: { label: 'International', cls: 'international' },
+  workshop: { label: 'Workshop', cls: 'workshop' },
+  online: { label: 'Online', cls: 'online' },
+  panel: { label: 'Panel', cls: 'online' },
+  talk: { label: 'Talk', cls: 'talk' }
+};
+
+function getLinkIcon(type: string, url: string): { icon: string; label: string } {
+  switch (type) {
+    case 'video':
+      return { icon: '/assets/icons/youtube.svg', label: 'Video' };
+    case 'slides':
+      return { icon: '/assets/icons/slides.svg', label: 'Slides' };
+    case 'announcement':
+      if (url?.includes('linkedin.com')) return { icon: '/assets/icons/linkedin.svg', label: 'LinkedIn' };
+      return { icon: '/assets/icons/globe.svg', label: 'Post' };
+    case 'event':
+      if (url?.includes('linkedin.com')) return { icon: '/assets/icons/linkedin.svg', label: 'LinkedIn' };
+      if (url?.includes('youtube.com')) return { icon: '/assets/icons/youtube.svg', label: 'Video' };
+      return { icon: '/assets/icons/globe.svg', label: 'Event' };
+    default:
+      return { icon: '/assets/icons/globe.svg', label: type };
+  }
+}
+
+const linkEntries = talk.links ? Object.entries(talk.links) : [];
+---
+
+<div
+  class="talk-card"
+  data-tags={talk.tags.join(',')}
+  data-topics={talk.topics?.join(',') || ''}
+>
+  <div>
+    <div class="talk-title">{talk.title}</div>
+    <div class="talk-event">{talk.event} &bull; {talk.date} &bull; {talk.location}</div>
+    <div class="talk-meta">
+      {talk.tags.map(t => {
+        const cfg = TAG_CONFIG[t] || { label: t, cls: 'talk' };
+        return <span class={"talk-tag " + cfg.cls}>{cfg.label}</span>;
+      })}
+    </div>
+  </div>
+  {linkEntries.length > 0 && (
+    <div class="talk-links">
+      {linkEntries.map(([key, url]) => {
+        const { icon, label } = getLinkIcon(key, url);
+        return (
+          <a href={url} target="_blank" rel="noopener" class="talk-link">
+            <img src={icon} alt="" class="link-icon" /> {label}
+          </a>
+        );
+      })}
+    </div>
+  )}
+</div>

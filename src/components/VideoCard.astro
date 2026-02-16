@@ -1,0 +1,27 @@
+---
+// VideoCard.astro — YouTube video card, pre-rendered at build time
+interface Props {
+  id: string;
+  title: string;
+  event: string;
+  badge?: string | null;
+}
+
+const { id, title, event, badge } = Astro.props;
+const ytUrl = "https://www.youtube.com/watch?v=" + id;
+const thumbUrl = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
+const badgeText = badge ? " \u2022 " + badge : "";
+---
+
+<a href={ytUrl} target="_blank" rel="noopener" class="video-card">
+  <div class="video-thumbnail">
+    <img src={thumbUrl} alt={title} loading="lazy" />
+    <div class="video-play-btn">
+      <div class="video-play-icon">&#9654;</div>
+    </div>
+  </div>
+  <div class="video-info">
+    <div class="video-title">{title}</div>
+    <div class="video-event">{event + badgeText}</div>
+  </div>
+</a>
