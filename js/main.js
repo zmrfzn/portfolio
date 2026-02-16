@@ -76,30 +76,32 @@
   var topicsGrid = document.getElementById('topics-grid');
   var ytStatsRow = document.getElementById('yt-stats-row');
   var activeFilter = 'all';
+  var activeTopic = null;
   var talksData = [];
 
   // Tag display config
   var TAG_CONFIG = {
-    keynote:       { label: 'Keynote',       cls: 'keynote' },
+    keynote: { label: 'Keynote', cls: 'keynote' },
     international: { label: 'International', cls: 'international' },
-    workshop:      { label: 'Workshop',      cls: 'workshop' },
-    online:        { label: 'Online',        cls: 'online' },
-    panel:         { label: 'Panel',         cls: 'online' },
-    talk:          { label: 'Talk',          cls: 'talk' }
+    workshop: { label: 'Workshop', cls: 'workshop' },
+    online: { label: 'Online', cls: 'online' },
+    panel: { label: 'Panel', cls: 'online' },
+    talk: { label: 'Talk', cls: 'talk' }
   };
 
   // Topic display config
   var TOPIC_CONFIG = {
     opentelemetry: { label: 'OpenTelemetry', filterTag: null },
-    aws:           { label: 'AWS & Cloud Services', filterTag: null },
-    kubernetes:    { label: 'Kubernetes & Cloud-Native', filterTag: null },
+    aws: { label: 'AWS & Cloud Services', filterTag: null },
+    adot: { label: 'ADOT (AWS Distro for OTel)', filterTag: null },
+    kubernetes: { label: 'Kubernetes & Cloud-Native', filterTag: null },
     observability: { label: 'Full-Stack Observability', filterTag: null },
-    'ai-llm':     { label: 'AI / LLM Monitoring', filterTag: null },
-    security:      { label: 'SecurityOps & Observability', filterTag: null }
+    'ai-llm': { label: 'AI / LLM Monitoring', filterTag: null },
+    security: { label: 'SecurityOps & Observability', filterTag: null }
   };
 
   // Desired display order for topics
-  var TOPIC_ORDER = ['opentelemetry', 'aws', 'kubernetes', 'observability', 'ai-llm', 'security'];
+  var TOPIC_ORDER = ['opentelemetry', 'aws', 'adot', 'kubernetes', 'observability', 'ai-llm', 'security'];
 
   // Link icon map — uses SVG icons from assets/icons/
   function linkIcon(type, url) {
@@ -167,12 +169,12 @@
 
     return '<div class="talk-card" data-tags="' + talk.tags.join(',') + '">' +
       '<div>' +
-        '<div class="talk-title">' + talk.title + '</div>' +
-        '<div class="talk-event">' + talk.event + ' &bull; ' + talk.date + ' &bull; ' + talk.location + '</div>' +
-        '<div class="talk-meta">' + tagsHtml + '</div>' +
+      '<div class="talk-title">' + talk.title + '</div>' +
+      '<div class="talk-event">' + talk.event + ' &bull; ' + talk.date + ' &bull; ' + talk.location + '</div>' +
+      '<div class="talk-meta">' + tagsHtml + '</div>' +
       '</div>' +
       linksHtml +
-    '</div>';
+      '</div>';
   }
 
   function renderTalks() {
@@ -270,8 +272,39 @@
         filterContainer.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         activeFilter = btn.getAttribute('data-filter');
+        activeTopic = null;
+        updateTopicIndicator();
         renderTalks();
       });
+    });
+  }
+
+  // === Topic Filter Indicator ===
+  function updateTopicIndicator() {
+    var existing = document.getElementById('topic-filter-indicator');
+    if (existing) existing.remove();
+
+    if (!activeTopic || !filterContainer) return;
+
+    var topicLabel = TOPIC_CONFIG[activeTopic] ? TOPIC_CONFIG[activeTopic].label : activeTopic;
+    var indicator = document.createElement('div');
+    indicator.id = 'topic-filter-indicator';
+    indicator.className = 'topic-filter-indicator';
+    indicator.innerHTML = 'Showing: <strong>' + topicLabel + '</strong> <button class="topic-clear-btn" title="Clear topic filter">&times;</button>';
+
+    filterContainer.parentNode.insertBefore(indicator, filterContainer.nextSibling);
+
+    indicator.querySelector('.topic-clear-btn').addEventListener('click', function () {
+      activeTopic = null;
+      activeFilter = 'all';
+      updateTopicIndicator();
+      renderTalks();
+      // Reset filter buttons to "All"
+      if (filterContainer) {
+        filterContainer.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+        var allBtn = filterContainer.querySelector('[data-filter="all"]');
+        if (allBtn) allBtn.classList.add('active');
+      }
     });
   }
 
@@ -342,11 +375,11 @@
 
       html += '<div class="topic-card" data-topic="' + topic + '" role="button" tabindex="0" title="View ' + cfg.label + ' talks">' +
         '<div class="topic-card-header">' +
-          '<div class="topic-name">' + cfg.label + '</div>' +
-          '<span class="topic-arrow">&#8599;</span>' +
+        '<div class="topic-name">' + cfg.label + '</div>' +
+        '<span class="topic-arrow">&#8599;</span>' +
         '</div>' +
         statsHtml +
-      '</div>';
+        '</div>';
     });
 
     topicsGrid.innerHTML = html;
@@ -358,18 +391,20 @@
 
         // Set the active filter to this topic
         activeFilter = topic;
+        activeTopic = topic;
 
         // Re-render talks with this topic filter
         renderTalks();
 
-        // Update filter button visual state — reset all, mark 'All' as not active
+        // Update filter button visual state — reset all
         if (filterContainer) {
           filterContainer.querySelectorAll('.filter-btn').forEach(function (b) {
             b.classList.remove('active');
           });
-          // No matching filter button for topics (they're separate from tags), so leave none active
-          // This is intentional — the user can click a tag filter to reset
         }
+
+        // Show topic filter indicator
+        updateTopicIndicator();
 
         // Scroll to speaking section
         var speakingSection = document.getElementById('speaking');
@@ -429,14 +464,14 @@
         '<span class="yt-stat-icon">&#9654;</span>' +
         '<span class="yt-stat-title">' + video.title + '</span>' +
         (viewsText ? '<span class="yt-stat-views">' + viewsText + '</span>' : '') +
-      '</a>';
+        '</a>';
     });
 
     if (totalViews > 0) {
       html += '<div class="yt-total-banner">' +
         '<span class="yt-stat-icon">&#9654;</span> ' +
         '<span>Total recorded talk views: <strong>' + formatViewCount(totalViews) + '+</strong></span>' +
-      '</div>';
+        '</div>';
     }
 
     ytStatsRow.innerHTML = html;
@@ -499,6 +534,29 @@
     });
   }
 
+  // === Data-Driven Videos Section ===
+  function renderVideos(videosData) {
+    var videosGrid = document.getElementById('videos-grid');
+    if (!videosGrid || !videosData || videosData.length === 0) return;
+
+    var html = '';
+    videosData.forEach(function (video) {
+      var badgeHtml = video.badge ? ' &bull; ' + video.badge : '';
+      html += '<a href="https://www.youtube.com/watch?v=' + video.id + '" target="_blank" rel="noopener" class="video-card">' +
+        '<div class="video-thumbnail">' +
+        '<img src="https://img.youtube.com/vi/' + video.id + '/hqdefault.jpg" alt="' + video.title + '" loading="lazy" />' +
+        '<div class="video-play-btn"><div class="video-play-icon">&#9654;</div></div>' +
+        '</div>' +
+        '<div class="video-info">' +
+        '<div class="video-title">' + video.title + '</div>' +
+        '<div class="video-event">' + video.event + badgeHtml + '</div>' +
+        '</div>' +
+        '</a>';
+    });
+
+    videosGrid.innerHTML = html;
+  }
+
   // === Main data load ===
   fetch('data/talks.json')
     .then(function (res) { return res.json(); })
@@ -518,6 +576,16 @@
     })
     .catch(function (err) {
       console.warn('Could not load talks.json:', err);
+    });
+
+  // Load videos data separately
+  fetch('data/videos.json')
+    .then(function (res) { return res.json(); })
+    .then(function (videosData) {
+      renderVideos(videosData);
+    })
+    .catch(function (err) {
+      console.warn('Could not load videos.json:', err);
     });
 
 })();

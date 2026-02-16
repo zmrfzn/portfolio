@@ -248,8 +248,15 @@ img {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .hero h1 {
@@ -386,95 +393,6 @@ img {
   font-weight: 500;
 }
 
-/* --- Experience --- */
-.experience-item {
-  position: relative;
-  padding: 28px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 16px;
-  transition: all var(--transition);
-}
-
-.experience-item:hover {
-  border-color: var(--border-hover);
-  background: var(--bg-card-hover);
-}
-
-.experience-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 8px;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.experience-role {
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-.experience-company {
-  color: var(--accent);
-}
-
-.experience-date {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  white-space: nowrap;
-}
-
-.experience-desc {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-top: 12px;
-}
-
-.experience-desc li {
-  margin-bottom: 6px;
-  padding-left: 4px;
-}
-
-/* --- Skills --- */
-.skills-group {
-  margin-bottom: 20px;
-}
-
-.skills-group-title {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-}
-
-.skills-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.skill-tag {
-  display: inline-block;
-  padding: 6px 14px;
-  background: var(--tag-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--tag-text);
-  font-family: var(--font-mono);
-  transition: all var(--transition);
-}
-
-.skill-tag:hover {
-  border-color: var(--accent);
-  background: var(--accent-glow);
-}
 
 /* --- About text --- */
 .about-text {
@@ -522,6 +440,54 @@ img {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
+}
+
+/* --- Topic Filter Indicator --- */
+.topic-filter-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  animation: fadeIn 0.3s ease;
+}
+
+.topic-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  transition: all var(--transition);
+}
+
+.topic-clear-btn:hover {
+  background: var(--accent-hover);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- Collapsible Year Groups --- */
@@ -954,36 +920,6 @@ img {
   color: var(--text-muted);
 }
 
-/* --- Education --- */
-.education-item {
-  padding: 20px 24px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 12px;
-  transition: all var(--transition);
-}
-
-.education-item:hover {
-  border-color: var(--border-hover);
-}
-
-.education-degree {
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.education-school {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-top: 2px;
-}
-
-.education-year {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
 
 /* --- Footer --- */
 .footer {

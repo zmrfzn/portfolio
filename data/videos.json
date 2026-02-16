@@ -1,0 +1,50 @@
+[
+    {
+        "id": "fLptS-w0Tyk",
+        "title": "Auto-telemetry for K8s with Pixie",
+        "event": "KubeDay India 2023",
+        "badge": "Keynote"
+    },
+    {
+        "id": "gZtnKmbtecY",
+        "title": "Simplifying Instrumentation with OTel",
+        "event": "API Days India 2025",
+        "badge": null
+    },
+    {
+        "id": "awTp7rF_1PE",
+        "title": "OpenTelemetry 101",
+        "event": "Conf42 Observability 2024",
+        "badge": null
+    },
+    {
+        "id": "H4V107K-xTU",
+        "title": "ADOT for Serverless Observability",
+        "event": "Cloud Native Hyderabad 2025",
+        "badge": null
+    },
+    {
+        "id": "figFMgvOhdk",
+        "title": "Serverless Instrumentation Under the Microscope",
+        "event": "Serverless Days Bangalore 2024",
+        "badge": null
+    },
+    {
+        "id": "a501tgQzc6Y",
+        "title": "OpenTelemetry & OpenLLmetry",
+        "event": "CNCF New Delhi 2024",
+        "badge": null
+    },
+    {
+        "id": "NkJefYSVxfE",
+        "title": "Introduction to Full-Stack Observability",
+        "event": "SaaS Insider 2024",
+        "badge": null
+    },
+    {
+        "id": "78C7gujwGO8",
+        "title": "Observability 101 for Kubernetes",
+        "event": "KCD Bengaluru 2023",
+        "badge": null
+    }
+]

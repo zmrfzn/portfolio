@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro:*)",
+      "Bash(start \"\" \"D:/workspace/Portfolio/index.html\")",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:linktr.ee)",
+      "Bash(git init:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial portfolio site - minimalist speaker portfolio\n\nSingle-page portfolio for Zameer Fouzan \\(Lead DevRel @ New Relic\\)\nfeaturing speaking engagements, expertise topics, video recordings,\nand dark/light theme toggle. Vanilla HTML/CSS/JS, zero dependencies.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(gh auth status:*)",
+      "Bash(where:*)",
+      "Bash(ssh:*)",
+      "Bash(curl:*)",
+      "Bash(git config:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo create portfolio --public --description \"Minimalist speaker portfolio - Zameer Fouzan\" --source \"D:/workspace/Portfolio\" --remote origin --push)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" api repos/zmrfzn/portfolio/pages -X POST -f \"build_type=workflow\" -f \"source[branch]=main\" -f \"source[path]=/\")",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" api repos/zmrfzn/portfolio/pages -X DELETE)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nMajor update: data-driven talks, collapsible sections, filters\n\n- Talks now rendered from data/talks.json manifest \\(easy to update\\)\n- Collapsible year sections \\(last 2 years open by default\\)\n- Tag-based filters: Keynote, International, Workshop, Talk, Online, Panel\n- About section uses LinkedIn summary text\n- Hero: dual badges \\(AWS Community Builder + DevRel APJ\\)\n- Profile image placeholder \\(onerror fallback\\)\n- Blog links added: Hashnode, Medium, Dev.to\n- Contact uses Linktree as primary CTA\n- 33 talks with event/video/slides/announcement links\n- Removed resume-heavy sections \\(Experience, Skills, Education\\)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:acd.awsugblr.in)",
+      "WebFetch(domain:sessionize.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:acd24.awsugpune.org)",
+      "WebFetch(domain:konfhub.com)",
+      "WebFetch(domain:www.meetup.com)",
+      "WebFetch(domain:x.com)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:in.linkedin.com)"
+    ]
+  }
+}
