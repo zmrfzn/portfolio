@@ -1,5 +1,25 @@
 [
   {
+    "id": "experts-live-india-2026",
+    "title": "Microsoft Agent Framework: The Open-Source Engine for Agentic AI Apps",
+    "event": "Experts Live India 2026",
+    "date": "Mar 2026",
+    "year": 2026,
+    "location": "Microsoft Office, Gurugram",
+    "tags": [
+      "talk"
+    ],
+    "topics": [
+      "ai-llm",
+      "observability",
+      "azure",
+      "agentic"
+    ],
+    "links": {
+      "event": "https://techmilap.com/events/experts-live-india-2026"
+    }
+  },
+  {
     "id": "expert-series-2026",
     "title": "Observability Expert Series — Fynd, Myntra, Acko",
     "event": "New Relic Expert Series",
