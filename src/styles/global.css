@@ -840,17 +840,16 @@ background: var(--bg-card);
 }
 
 .video-card {
-  background: var(--bg-card);
-  /* border removed */
+  display: block;
+  text-decoration: none;
+  background: var(--bg-card-hover); /* use hover state as default */
   border-radius: 12px;
   overflow: hidden;
   transition: all var(--transition);
 }
 
 .video-card:hover {
-  /* border hover removed */
-  /* translateY removed */
-  background: var(--bg-card-hover);
+  opacity: 0.6; /* dim on hover */
 }
 
 .video-thumbnail {

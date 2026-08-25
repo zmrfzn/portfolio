@@ -281,12 +281,20 @@ talksData.forEach((talk) => {
     
     /* Scrollbar styling for internal bento scrolling */
     .bento-timeline::-webkit-scrollbar,
-    .bento-topics::-webkit-scrollbar {
-      width: 6px;
+    .bento-topics::-webkit-scrollbar,
+    .videos-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .bento-timeline::-webkit-scrollbar-track,
+    .bento-topics::-webkit-scrollbar-track,
+    .videos-scroll::-webkit-scrollbar-track {
+      background-color: var(--bg-card);
+      border-radius: 10px;
     }
     .bento-timeline::-webkit-scrollbar-thumb,
-    .bento-topics::-webkit-scrollbar-thumb {
-      background-color: var(--bg-secondary);
+    .bento-topics::-webkit-scrollbar-thumb,
+    .videos-scroll::-webkit-scrollbar-thumb {
+      background-color: var(--accent);
       border-radius: 10px;
     }
 
