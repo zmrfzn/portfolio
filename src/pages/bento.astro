@@ -97,13 +97,13 @@ talksData.forEach((talk) => {
         <About />
       </div>
 
-      <!-- VIDEOS (Spans 1 col) -->
+      <!-- VIDEOS (Spans 1 col, scrollable to match About height) -->
       <div class="bento-item bento-videos fade-in" style="animation-delay: 0.3s">
-        <div class="bento-header">
+        <div class="bento-header bento-sticky-header">
           <h3>Featured Videos</h3>
         </div>
         <div class="videos-scroll">
-          {videosData.slice(0, 3).map((v: any) => (
+          {videosData.map((v: any) => (
             <VideoCard id={v.id} title={v.title} event={v.event} badge={v.badge} />
           ))}
         </div>
@@ -111,7 +111,7 @@ talksData.forEach((talk) => {
 
       <!-- TIMELINE (Spans 2 cols) -->
       <div class="bento-item bento-timeline fade-in" style="animation-delay: 0.4s">
-        <div class="bento-header">
+        <div class="bento-header bento-sticky-header">
           <h3>Speaking Timeline</h3>
         </div>
         <div class="timeline-container">
@@ -121,7 +121,7 @@ talksData.forEach((talk) => {
 
       <!-- TOPICS (Spans 1 col) -->
       <div class="bento-item bento-topics fade-in" style="animation-delay: 0.5s">
-        <div class="bento-header">
+        <div class="bento-header bento-sticky-header">
           <h3>Expertise</h3>
         </div>
         <div class="topics-list">
@@ -217,12 +217,23 @@ talksData.forEach((talk) => {
     .bento-hero { grid-column: span 2; }
     .bento-stats { grid-column: span 1; justify-content: center; }
     .bento-about { grid-column: span 2; }
-    .bento-videos { grid-column: span 1; }
+    .bento-videos { grid-column: span 1; max-height: 450px; overflow-y: auto; scrollbar-width: thin; }
     .bento-timeline { grid-column: span 2; max-height: 800px; overflow-y: auto; scrollbar-width: thin; }
     .bento-topics { grid-column: span 1; max-height: 800px; overflow-y: auto; scrollbar-width: thin; }
     .bento-contact { grid-column: span 3; text-align: center; padding: 4rem 2rem; background: var(--accent-indigo); }
     .bento-contact h2, .bento-contact p { color: #fff; }
-    
+
+    /* Sticky headers inside scrollable bento tiles */
+    .bento-sticky-header {
+      position: sticky;
+      top: -2rem; /* offset the bento-item padding */
+      z-index: 5;
+      background: var(--bg-card);
+      padding-top: 0.5rem;
+      padding-bottom: 0.25rem;
+      margin: -0.5rem 0 1rem;
+    }
+
     .contact-content {
       max-width: 600px;
       margin: 0 auto;
@@ -233,6 +244,25 @@ talksData.forEach((talk) => {
     }
     .contact-content h2 { font-size: 2.5rem; margin: 0; }
     .contact-content p { margin: 0; }
+
+    /* Compact video cards inside bento */
+    :global(.bento-videos .video-card) {
+      border-radius: 10px;
+    }
+    :global(.bento-videos .video-thumbnail img) {
+      height: 120px;
+      object-fit: cover;
+    }
+    :global(.bento-videos .video-info) {
+      padding: 8px 12px;
+    }
+    :global(.bento-videos .video-title) {
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+    :global(.bento-videos .video-event) {
+      font-size: 0.7rem;
+    }
 
     /* Component Overrides for Bento Context */
     :global(.bento-hero .hero) { padding: 0; min-height: auto; }
