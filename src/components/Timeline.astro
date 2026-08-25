@@ -33,12 +33,42 @@ const sortedYears = Object.keys(talksByYear).map(Number).sort((a, b) => b - a);
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Open the first two year groups by default (current and last year)
+  const setupTimeline = () => {
     const yearGroups = document.querySelectorAll('details.timeline-year-group');
+    const overlay = document.getElementById('spotlight-overlay');
+    let isInitialLoad = true;
+
+    // Handle spotlight overlay on toggle
+    yearGroups.forEach(group => {
+      group.addEventListener('toggle', (e) => {
+        if (!overlay || isInitialLoad) return;
+        // Only trigger overlay if this was a user action, not initial load setup
+        const anyOpen = Array.from(yearGroups).some(g => g.hasAttribute('open'));
+        if (anyOpen) {
+          overlay.classList.add('active');
+        } else {
+          overlay.classList.remove('active');
+        }
+      });
+    });
+
+    // Close all groups when clicking the overlay
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        yearGroups.forEach(g => g.removeAttribute('open'));
+      });
+    }
+
+    // Open first two groups by default
     if (yearGroups.length > 0) yearGroups[0].setAttribute('open', '');
     if (yearGroups.length > 1) yearGroups[1].setAttribute('open', '');
-  });
+
+    setTimeout(() => {
+      isInitialLoad = false;
+    }, 50);
+  };
+
+  setupTimeline();
 </script>
 
 <style>
@@ -46,6 +76,8 @@ const sortedYears = Object.keys(talksByYear).map(Number).sort((a, b) => b - a);
     display: flex;
     flex-direction: column;
     gap: 12px;
+    position: relative;
+    z-index: 50;
   }
 
   /* --- Year Group --- */
@@ -59,7 +91,7 @@ const sortedYears = Object.keys(talksByYear).map(Number).sort((a, b) => b - a);
     align-items: center;
     gap: 12px;
     padding: 14px 20px;
-    background: var(--bg-card);
+    background: var(--timeline-header-bg, var(--bg-card));
     cursor: pointer;
     list-style: none;
     user-select: none;

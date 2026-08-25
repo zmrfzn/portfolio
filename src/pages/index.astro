@@ -129,13 +129,13 @@ const ytVideoIds: VideoInfo[] = talksData
   <!-- SPEAKING -->
   <section class="section" id="speaking">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-on-scroll">
         <span class="section-label">// Speaking</span>
         <h2 class="section-title">Conference Talks & Workshops</h2>
       </div>
 
       <!-- Filter Buttons (pre-rendered with counts) -->
-      <div class="speaking-filters fade-in" id="speaking-filters">
+      <div class="speaking-filters reveal-on-scroll" id="speaking-filters">
         <button class="filter-btn active" data-filter="all">All ({talksData.length})</button>
         {filterOrder.slice(1).map(tag => (
           tagCounts[tag] ? (
@@ -163,12 +163,12 @@ const ytVideoIds: VideoInfo[] = talksData
   <!-- EXPERTISE -->
   <section class="section" id="topics">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-on-scroll">
         <span class="section-label">// Expertise</span>
         <h2 class="section-title">Speaking Topics</h2>
       </div>
 
-      <div class="topics-grid fade-in" id="topics-grid">
+      <div class="topics-grid reveal-on-scroll" id="topics-grid">
         {TOPIC_ORDER.map(topic => {
           const s = topicStats[topic];
           if (s.count === 0) return null;
@@ -188,18 +188,18 @@ const ytVideoIds: VideoInfo[] = talksData
       </div>
 
       <!-- Conference Logo Strip -->
-      <div class="section-sub fade-in">
+      <div class="section-sub reveal-on-scroll">
         <h3 class="section-subtitle">Spoken At</h3>
       </div>
-      <div class="logo-strip fade-in" id="logo-strip">
+      <div class="logo-strip reveal-on-scroll" id="logo-strip">
         {conferencePills.map(name => <div class="logo-pill">{name}</div>)}
       </div>
 
       <!-- YouTube View Counts (loaded client-side from Worker) -->
-      <div class="section-sub fade-in">
+      <div class="section-sub reveal-on-scroll">
         <h3 class="section-subtitle">Recorded Talks</h3>
       </div>
-      <div class="yt-stats-row fade-in" id="yt-stats-row">
+      <div class="yt-stats-row reveal-on-scroll" id="yt-stats-row">
         {ytVideoIds.map(v => (
           <a href={v.url} target="_blank" rel="noopener" class="yt-stat-chip">
             <span class="yt-stat-icon">&#9654;</span>
@@ -220,11 +220,11 @@ const ytVideoIds: VideoInfo[] = talksData
   <!-- VIDEOS -->
   <section class="section" id="videos">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-on-scroll">
         <span class="section-label">// Videos</span>
         <h2 class="section-title">Featured Recordings</h2>
       </div>
-      <div class="videos-grid fade-in" id="videos-grid">
+      <div class="videos-grid reveal-on-scroll" id="videos-grid">
         {videosData.map((v: any) => (
           <VideoCard id={v.id} title={v.title} event={v.event} badge={v.badge} />
         ))}
@@ -237,13 +237,13 @@ const ytVideoIds: VideoInfo[] = talksData
   <!-- CONTACT -->
   <section class="section" id="contact" style="padding-bottom: 4rem;">
     <div class="container">
-      <div class="cta-block fade-in" style="text-align: center; padding: 4rem 2rem; background: var(--accent-indigo); border-radius: 24px;">
+      <div class="cta-block reveal-on-scroll" style="text-align: center; padding: 4rem 2rem; background: var(--accent-indigo); border-radius: 24px;">
         <h2 style="color: #fff; font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800;">Let's Build Together</h2>
         <p style="color: #fff; max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; opacity: 0.9;">
           Interested in having me speak at your event, or want to collaborate on observability and cloud-native topics?
         </p>
         <div class="hero-links" style="justify-content:center;">
-          <a href="https://linktr.ee/zmrfzn" target="_blank" rel="noopener" class="btn" style="background: #fff; color: var(--accent-indigo); padding: 1rem 2.5rem; font-size: 1.25rem; font-weight: 700; border: none;">
+          <a href="https://linktr.ee/zmrfzn" target="_blank" rel="noopener" class="btn" style="background: #fff; color: var(--accent-indigo); padding: 1rem 2.5rem; font-size: 1.25rem; font-weight: 700;">
             Get in Touch
           </a>
         </div>

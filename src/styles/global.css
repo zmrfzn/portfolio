@@ -287,6 +287,7 @@ color: var(--text-primary);
   gap: 8px;
   padding: 10px 20px;
   border-radius: 8px;
+  border: none;
   font-size: 0.875rem;
   font-weight: 600;
   transition: all var(--transition);
@@ -441,7 +442,7 @@ background: var(--bg-card);
   padding: 8px 16px;
   margin-bottom: 16px;
   background: var(--accent-glow);
-  border: 1px solid var(--accent);
+  border: none;
   border-radius: 999px;
   font-size: 0.85rem;
   color: var(--text-primary);
@@ -472,12 +473,10 @@ background: var(--bg-card);
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -539,9 +538,9 @@ background: var(--bg-card);
 
 .talk-card {
   padding: 16px;
-  /* subtle accent line */
-  border-left: 2px solid rgba(255, 255, 255, 0.05);
-  border-radius: 0 12px 12px 0;
+  background: var(--bg-primary);
+  /* subtle accent line removed */
+  border-radius: 12px;
   margin-bottom: 12px;
   transition: all var(--transition);
   display: flex;
@@ -656,7 +655,7 @@ background: var(--bg-card);
 
 .topic-card {
   padding: 20px;
-  background: var(--bg-card);
+  background: var(--bg-secondary);
   /* border removed */
   border-radius: 12px;
   transition: all var(--transition);
@@ -913,7 +912,6 @@ background: var(--bg-card);
 /* --- Footer --- */
 .footer {
   padding: 48px 0;
-  border-top: 1px solid var(--border);
   text-align: center;
 }
 
@@ -949,17 +947,7 @@ background: var(--bg-card);
   color: var(--text-muted);
 }
 
-/* --- Fade-in animation --- */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* --- Fade-in animation removed --- */
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
@@ -970,7 +958,7 @@ background: var(--bg-card);
     left: 0;
     right: 0;
     background: var(--bg-primary);
-    border-bottom: 1px solid var(--border);
+    border-bottom: none;
     flex-direction: column;
     padding: 16px 24px;
     gap: 16px;

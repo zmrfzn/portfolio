@@ -83,22 +83,22 @@ talksData.forEach((talk) => {
     <div class="bento-grid">
       
       <!-- HERO (Spans 2 cols) -->
-      <div class="bento-item bento-hero fade-in">
+      <div class="bento-item bento-hero reveal-on-scroll">
         <Hero />
       </div>
 
       <!-- STATS (Spans 1 col) -->
-      <div class="bento-item bento-stats fade-in" style="animation-delay: 0.1s">
+      <div class="bento-item bento-stats reveal-on-scroll" style="animation-delay: 0.1s">
         <Stats talkCount={talksData.length} countries={uniqueCountries.size} />
       </div>
 
       <!-- ABOUT (Spans 2 cols) -->
-      <div class="bento-item bento-about fade-in" style="animation-delay: 0.2s">
+      <div class="bento-item bento-about reveal-on-scroll" style="animation-delay: 0.2s">
         <About />
       </div>
 
       <!-- VIDEOS (Spans 1 col, scrollable to match About height) -->
-      <div class="bento-item bento-videos fade-in" style="animation-delay: 0.3s">
+      <div class="bento-item bento-videos reveal-on-scroll" style="animation-delay: 0.3s">
         <div class="bento-header bento-sticky-header">
           <h3>Featured Videos</h3>
         </div>
@@ -110,7 +110,7 @@ talksData.forEach((talk) => {
       </div>
 
       <!-- TIMELINE (Spans 2 cols) -->
-      <div class="bento-item bento-timeline fade-in" style="animation-delay: 0.4s">
+      <div class="bento-item bento-timeline reveal-on-scroll" style="animation-delay: 0.4s">
         <div class="bento-header bento-sticky-header">
           <h3>Speaking Timeline</h3>
         </div>
@@ -120,7 +120,7 @@ talksData.forEach((talk) => {
       </div>
 
       <!-- TOPICS (Spans 1 col) -->
-      <div class="bento-item bento-topics fade-in" style="animation-delay: 0.5s">
+      <div class="bento-item bento-topics reveal-on-scroll" style="animation-delay: 0.5s">
         <div class="bento-header bento-sticky-header">
           <h3>Expertise</h3>
         </div>
@@ -145,12 +145,12 @@ talksData.forEach((talk) => {
       </div>
 
       <!-- CONTACT (Spans 3 cols) -->
-      <div class="bento-item bento-contact fade-in" style="animation-delay: 0.6s">
+      <div class="bento-item bento-contact reveal-on-scroll" style="animation-delay: 0.6s">
         <div class="contact-content">
           <h2>Let's Build Together</h2>
           <p>Interested in having me speak at your event, or want to collaborate on observability and cloud-native topics?</p>
           <div class="hero-links">
-          <a href="https://linktr.ee/zmrfzn" target="_blank" rel="noopener" class="btn" style="background: #fff; color: var(--accent-indigo); padding: 1rem 2.5rem; font-size: 1.25rem; font-weight: 700;">
+          <a href="https://linktr.ee/zmrfzn" target="_blank" rel="noopener" class="btn btn-primary">
             Get in Touch
           </a>
         </div>
@@ -162,6 +162,21 @@ talksData.forEach((talk) => {
 
   <Footer />
   <script src="../scripts/main.js"></script>
+  <script>
+    const syncHeights = () => {
+      const aboutBox = document.querySelector('.bento-about');
+      const videosBox = document.querySelector('.bento-videos');
+      if (aboutBox && videosBox) {
+        // Use offsetHeight to include padding and border
+        videosBox.style.maxHeight = aboutBox.offsetHeight + 'px';
+      }
+    };
+    
+    // Run on load and on window resize
+    window.addEventListener('load', syncHeights);
+    window.addEventListener('resize', syncHeights);
+    syncHeights();
+  </script>
 
   <style>
     /* Bento Grid Styles */
@@ -187,7 +202,7 @@ talksData.forEach((talk) => {
       display: flex;
       flex-direction: column;
       transition: opacity 0.2s ease, background-color 0.2s ease;
-      overflow: hidden;
+      overflow: clip; /* clip, NOT hidden — hidden kills position:sticky in children */
       border: none; /* NO BORDERS */
     }
 
@@ -211,21 +226,27 @@ talksData.forEach((talk) => {
     .bento-hero { grid-column: span 2; }
     .bento-stats { grid-column: span 1; justify-content: center; }
     .bento-about { grid-column: span 2; }
-    .bento-videos { grid-column: span 1; max-height: 450px; overflow-y: auto; scrollbar-width: thin; }
-    .bento-timeline { grid-column: span 2; max-height: 800px; overflow-y: auto; scrollbar-width: thin; }
-    .bento-topics { grid-column: span 1; max-height: 800px; overflow-y: auto; scrollbar-width: thin; }
+    .bento-videos { grid-column: span 1; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; }
+    .bento-timeline { 
+      grid-column: span 2; 
+      max-height: 800px; 
+      overflow-x: hidden;
+      overflow-y: auto; 
+      scrollbar-width: thin; 
+      --timeline-header-bg: var(--bg-card-hover);
+    }
+    .bento-topics { grid-column: span 1; max-height: 800px; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; }
     .bento-contact { grid-column: span 3; text-align: center; padding: 4rem 2rem; background: var(--accent-indigo); }
     .bento-contact h2, .bento-contact p { color: #fff; }
 
     /* Sticky headers inside scrollable bento tiles */
     .bento-sticky-header {
       position: sticky;
-      top: -2rem; /* offset the bento-item padding */
-      z-index: 5;
+      top: 0;
+      z-index: 30;
       background: var(--bg-card);
-      padding-top: 0.5rem;
-      padding-bottom: 0.25rem;
-      margin: -0.5rem 0 1rem;
+      padding: 2rem 2rem 1rem 2rem;
+      margin: -2rem -2rem 1rem -2rem;
     }
 
     .contact-content {
@@ -280,20 +301,25 @@ talksData.forEach((talk) => {
     }
     
     /* Scrollbar styling for internal bento scrolling */
+    .bento-timeline,
+    .bento-topics,
+    .bento-videos {
+      scrollbar-color: var(--accent) var(--bg-card);
+    }
     .bento-timeline::-webkit-scrollbar,
     .bento-topics::-webkit-scrollbar,
-    .videos-scroll::-webkit-scrollbar {
+    .bento-videos::-webkit-scrollbar {
       width: 4px;
     }
     .bento-timeline::-webkit-scrollbar-track,
     .bento-topics::-webkit-scrollbar-track,
-    .videos-scroll::-webkit-scrollbar-track {
+    .bento-videos::-webkit-scrollbar-track {
       background-color: var(--bg-card);
       border-radius: 10px;
     }
     .bento-timeline::-webkit-scrollbar-thumb,
     .bento-topics::-webkit-scrollbar-thumb,
-    .videos-scroll::-webkit-scrollbar-thumb {
+    .bento-videos::-webkit-scrollbar-thumb {
       background-color: var(--accent);
       border-radius: 10px;
     }

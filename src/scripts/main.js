@@ -32,16 +32,7 @@ navLinks.querySelectorAll('a').forEach(function (link) {
     });
 });
 
-// --- Scroll Fade-In ---
-var fadeObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            fadeObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(function (el) { fadeObserver.observe(el); });
+// --- Scroll Fade-In removed (Using BaseLayout IntersectionObserver for .reveal-on-scroll instead) ---
 
 // --- Smooth Scroll ---
 document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -55,12 +46,13 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 var activeFilter = 'all';
 var activeTopic = null;
 var filterContainer = document.getElementById('speaking-filters');
-var speakingContent = document.getElementById('speaking-content');
+var speakingContent = document.getElementById('speaking') || document.querySelector('.timeline');
 var topicIndicator = document.getElementById('topic-filter-indicator');
 var topicLabelEl = document.getElementById('topic-filter-label');
 var topicClearBtn = document.getElementById('topic-clear-btn');
 
 function applyFilter() {
+    if (!speakingContent) return;
     speakingContent.querySelectorAll('.talk-card').forEach(function (card) {
         var tags = (card.dataset.tags || '').split(',');
         var topics = (card.dataset.topics || '').split(',').filter(Boolean);
@@ -74,16 +66,17 @@ function applyFilter() {
         }
     });
 
-    speakingContent.querySelectorAll('.year-group').forEach(function (group) {
-        var content = group.querySelector('.year-content');
+    speakingContent.querySelectorAll('.timeline-year-group').forEach(function (group) {
+        var content = group.querySelector('.timeline-year-content');
+        if (!content) return;
         var visibleCards = content.querySelectorAll('.talk-card:not([style*="display: none"])');
-        var countSpan = group.querySelector('.year-count');
+        var countSpan = group.querySelector('.timeline-year-count');
 
         if (visibleCards.length === 0) {
             group.style.display = 'none';
         } else {
             group.style.display = '';
-            countSpan.textContent = visibleCards.length + ' talk' + (visibleCards.length > 1 ? 's' : '');
+            if (countSpan) countSpan.textContent = visibleCards.length + ' talk' + (visibleCards.length > 1 ? 's' : '');
         }
     });
 }
@@ -136,28 +129,7 @@ topicClearBtn.addEventListener('click', function () {
     applyFilter();
 });
 
-// --- Year Group Toggles ---
-speakingContent.querySelectorAll('.year-toggle').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        var group = btn.parentElement;
-        var content = group.querySelector('.year-content');
-        var chevron = btn.querySelector('.year-chevron');
-        var isOpen = group.classList.contains('open');
-
-        if (isOpen) {
-            content.style.display = 'none';
-            group.classList.remove('open');
-            chevron.innerHTML = '\u25BC';
-            btn.setAttribute('aria-expanded', 'false');
-        } else {
-            content.style.display = '';
-            group.classList.add('open');
-            chevron.innerHTML = '\u25B2';
-            btn.setAttribute('aria-expanded', 'true');
-        }
-    });
-});
-
+// --- Year Group Toggles handled natively by Timeline.astro <details> ---
 // --- YouTube View Counts ---
 function formatCount(num) {
     if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
