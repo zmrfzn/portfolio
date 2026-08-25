@@ -28,6 +28,24 @@ const { title, description } = Astro.props;
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <div class="spotlight-overlay" id="spotlight-overlay"></div>
   <slot />
+
+  <script>
+    // Intersection Observer for reveal-on-scroll elements
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>

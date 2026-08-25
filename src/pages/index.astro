@@ -12,6 +12,7 @@ import TalkCard from '../components/TalkCard.astro';
 import TopicCard from '../components/TopicCard.astro';
 import VideoCard from '../components/VideoCard.astro';
 import Footer from '../components/Footer.astro';
+import Timeline from '../components/Timeline.astro';
 
 import talksData from '../data/talks.json';
 import videosData from '../data/videos.json';
@@ -116,15 +117,14 @@ const ytVideoIds: VideoInfo[] = talksData
   description="Lead Developer Relations Engineer specialising in observability, OpenTelemetry, and cloud-native systems. 30+ speaking engagements across 4 countries."
 >
   <Nav />
-  <Hero />
-
-  <Stats talkCount={talksData.length} countries={uniqueCountries.size} />
-
-  <div class="container"><hr class="section-divider" /></div>
-
-  <About />
-
-  <div class="container"><hr class="section-divider" /></div>
+  <!-- LAYOUT SPLIT -->
+  <div class="layout-split">
+    <div class="layout-sidebar">
+      <Hero />
+      <Stats talkCount={talksData.length} countries={uniqueCountries.size} />
+      <About />
+    </div>
+    <div class="layout-main">
 
   <!-- SPEAKING -->
   <section class="section" id="speaking">
@@ -153,28 +153,12 @@ const ytVideoIds: VideoInfo[] = talksData
       </div>
 
       <!-- Year Groups (all pre-rendered) -->
-      <div id="speaking-content">
-        {sortedYears.map((year, idx) => {
-          const talks = talksByYear[year];
-          const isOpen = idx < 2;
-          return (
-            <div class={"year-group" + (isOpen ? " open" : "")} data-year={year}>
-              <button class="year-toggle" aria-expanded={isOpen ? 'true' : 'false'}>
-                <span class="year-label">{year}</span>
-                <span class="year-count" data-total={talks.length}>{talks.length + ' talk' + (talks.length > 1 ? 's' : '')}</span>
-                <span class="year-chevron">{isOpen ? '\u25B2' : '\u25BC'}</span>
-              </button>
-              <div class="year-content" style={isOpen ? '' : 'display:none'}>
-                {talks.map(talk => <TalkCard talk={talk} />)}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <!-- Timeline Component -->
+      <Timeline />
     </div>
   </section>
 
-  <div class="container"><hr class="section-divider" /></div>
+
 
   <!-- EXPERTISE -->
   <section class="section" id="topics">
@@ -231,7 +215,7 @@ const ytVideoIds: VideoInfo[] = talksData
     </div>
   </section>
 
-  <div class="container"><hr class="section-divider" /></div>
+
 
   <!-- VIDEOS -->
   <section class="section" id="videos">
@@ -248,7 +232,7 @@ const ytVideoIds: VideoInfo[] = talksData
     </div>
   </section>
 
-  <div class="container"><hr class="section-divider" /></div>
+
 
   <!-- CONTACT -->
   <section class="section" id="contact">
@@ -275,6 +259,88 @@ const ytVideoIds: VideoInfo[] = talksData
     </div>
   </section>
 
+    </div>
+  </div>
+
   <Footer />
   <script src="../scripts/main.js"></script>
+
+  <style>
+    .layout-split {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .layout-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    @media (min-width: 900px) {
+      .layout-split {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .layout-sidebar {
+        width: 350px;
+        flex-shrink: 0;
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        padding-bottom: 2rem;
+        /* Clean scrollbar for sidebar */
+        scrollbar-width: none;
+      }
+      
+      .layout-sidebar::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Fix 1: Hero Component Overrides */
+      .layout-sidebar :global(.hero) {
+        padding: 0;
+        min-height: auto;
+      }
+      .layout-sidebar :global(.hero-row) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .layout-sidebar :global(.hero-image img) {
+        width: 100px;
+        height: 100px;
+      }
+
+      /* Fix 2: Stats Component Overrides */
+      .layout-sidebar :global(.stats-grid) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .layout-sidebar :global(.stat-card) {
+        padding: 16px;
+      }
+      .layout-sidebar :global(.section) {
+        padding: 20px 0;
+      }
+
+      /* Fix 3: About Component Overrides */
+      .layout-sidebar :global(.about-text p) {
+        font-size: 0.85rem;
+      }
+      .layout-sidebar :global(.section-header) {
+        margin-bottom: 16px;
+      }
+
+      /* Fix 4: Main Layout Container Overrides */
+      .layout-main :global(.container) {
+        max-width: none;
+        padding: 0;
+      }
+    }
+  </style>
 </BaseLayout>

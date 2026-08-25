@@ -1,0 +1,177 @@
+---
+// Timeline.astro - Progressive disclosure timeline with backdrop spotlight
+import talksData from '../data/talks.json';
+import TalkCard from './TalkCard.astro';
+---
+
+<div class="timeline reveal-on-scroll">
+  {talksData.map((talk) => (
+    <details class="timeline-item">
+      <summary class="timeline-summary">
+        <div class="timeline-meta">
+          <span class="timeline-year">{talk.year}</span>
+          <span class="timeline-date">{talk.date}</span>
+        </div>
+        <div class="timeline-title-bar">
+          <h3 class="timeline-title">{talk.title}</h3>
+          <p class="timeline-event">{talk.event}</p>
+        </div>
+        <div class="timeline-indicator">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </summary>
+      <div class="timeline-content">
+        <TalkCard talk={talk} />
+      </div>
+    </details>
+  ))}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const detailsElements = document.querySelectorAll('details.timeline-item');
+    const overlay = document.getElementById('spotlight-overlay');
+
+    detailsElements.forEach(detail => {
+      detail.addEventListener('toggle', (e) => {
+        if (detail.open) {
+          // Close others
+          detailsElements.forEach(other => {
+            if (other !== detail && other.open) {
+              other.removeAttribute('open');
+            }
+          });
+          overlay?.classList.add('active');
+        } else {
+          // Check if any are open
+          const anyOpen = Array.from(detailsElements).some(d => d.open);
+          if (!anyOpen) overlay?.classList.remove('active');
+        }
+      });
+    });
+
+    // Close all when clicking overlay
+    overlay?.addEventListener('click', () => {
+      detailsElements.forEach(d => d.removeAttribute('open'));
+      overlay.classList.remove('active');
+    });
+  });
+</script>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 30;
+  }
+  
+  .timeline-item {
+    background: var(--bg-card);
+    border-radius: 12px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .timeline-item:hover {
+    background: var(--bg-card-hover);
+  }
+  
+  .timeline-item[open] {
+    z-index: 50; /* Ensure it stays above the z-index: 40 overlay */
+    box-shadow: 0 0 0 1px var(--accent-glow), var(--shadow-lg);
+    background: var(--bg-card); 
+  }
+  
+  .timeline-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    list-style: none; /* Remove default arrow */
+    user-select: none;
+  }
+  
+  .timeline-summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  .timeline-meta {
+    flex-shrink: 0;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .timeline-year {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+  
+  .timeline-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  .timeline-title-bar {
+    flex: 1;
+  }
+  
+  .timeline-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+  
+  .timeline-event {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  .timeline-indicator {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-muted);
+  }
+  
+  .timeline-item[open] .timeline-indicator {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+  
+  .timeline-content {
+    padding: 0 20px 20px 140px; /* Aligns with the title bar */
+    animation: slideDown 0.3s ease-out forwards;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .timeline-summary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .timeline-meta {
+      width: auto;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+    }
+    .timeline-indicator {
+      display: none; /* Hide arrow on mobile to save space */
+    }
+    .timeline-content {
+      padding: 0 20px 20px;
+    }
+  }
+</style>
