@@ -76,9 +76,10 @@ const sortedYears = Object.keys(talksByYear).map(Number).sort((a, b) => b - a);
       overlay.classList.remove('active');
     });
 
-    // Open the first year group by default
-    const firstYear = document.querySelector('details.timeline-year-group');
-    if (firstYear) firstYear.setAttribute('open', '');
+    // Open the first two year groups by default (current and last year)
+    const yearGroups = document.querySelectorAll('details.timeline-year-group');
+    if (yearGroups.length > 0) yearGroups[0].setAttribute('open', '');
+    if (yearGroups.length > 1) yearGroups[1].setAttribute('open', '');
   });
 </script>
 

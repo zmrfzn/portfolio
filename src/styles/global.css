@@ -553,7 +553,6 @@ background: var(--bg-card);
 .talk-card:hover {
   /* border hover removed */
   background: var(--bg-card-hover);
-  transform: translateX(4px);
 }
 
 .talk-title {
@@ -668,7 +667,6 @@ background: var(--bg-card);
   /* border-color removed */
   background: var(--bg-card-hover);
   /* translateY removed */
-  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .topic-card-header {
@@ -852,7 +850,7 @@ background: var(--bg-card);
 .video-card:hover {
   /* border hover removed */
   /* translateY removed */
-  opacity: 0.95;
+  background: var(--bg-card-hover);
 }
 
 .video-thumbnail {
